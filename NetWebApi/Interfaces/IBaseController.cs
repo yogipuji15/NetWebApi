@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using NetWebApi.Models;
+using System.Collections.Generic;
 
 namespace NetWebApi.Interfaces
 {
@@ -8,7 +9,7 @@ namespace NetWebApi.Interfaces
     {
         Task<ActionResult<ApiResponse>> GetAllData();
 
-        Task<ActionResult<ApiResponse>> Post(Request entityRequest);
+        Task<ActionResult<ApiResponse>> Post(IEnumerable<Request> entityRequest);
 
     }
 }

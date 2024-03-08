@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using NetWebApi.Interfaces;
 using NetWebApi.Models;
 using IConnectionFactory = NetWebApi.Interfaces.IConnectionFactory;
+using NetWebApi.Models.Request;
+using NetWebApi.Helper;
 
 namespace NetWebApi.Services
 {
@@ -44,7 +46,16 @@ namespace NetWebApi.Services
 
         public virtual async Task<ServiceResult> Post(dynamic entityRequest)
         {
-            Entity entity = _mapper.Map<Entity>(entityRequest);
+            if (entityRequest is IEnumerable<CreateUserRequest> createRequest)
+            {
+                foreach (var item in createRequest)
+                {
+                    item.Password = PasswordHasher.HashPassword(item.Password);
+                }
+                
+            }
+
+            IEnumerable<Entity> entity = _mapper.Map<IEnumerable<Entity>>(entityRequest);
 
             try
             {

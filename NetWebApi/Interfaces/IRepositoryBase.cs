@@ -6,6 +6,6 @@ namespace NetWebApi.Interfaces
     public interface IRepositoryBase<Entity> where Entity : class
     {
         Task<IEnumerable<Entity>> GetAllData();
-        Task<dynamic> Create(Entity entity);
+        Task<dynamic> Create(IEnumerable<Entity> entity);
     }
 }

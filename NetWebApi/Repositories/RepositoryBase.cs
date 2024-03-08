@@ -34,12 +34,12 @@ namespace NetWebApi.Repositories
             //return await _dbConnection.Set<Entity>().FromSqlRaw($"SELECT * FROM {tableName}").ToListAsync();
         }
 
-        public virtual async Task<dynamic> Create(Entity entity)
+        public virtual async Task<dynamic> Create(IEnumerable<Entity>  entity)
         {
             //await _dbConnection.Set<T>().AddAsync(entity);
             //await _dbConnection.SaveChangesAsync();
 
-            await _database.Set<Entity>().AddAsync(entity);
+            await _database.Set<Entity>().AddRangeAsync(entity);
             await _database.SaveChangesAsync();
 
             return null;

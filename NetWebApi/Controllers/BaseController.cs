@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using NetWebApi.Interfaces;
 using NetWebApi.Models;
+using System.Collections.Generic;
 
 namespace NetWebApi.Controllers
 {
@@ -44,7 +45,7 @@ namespace NetWebApi.Controllers
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public virtual async Task<ActionResult<ApiResponse>> Post([FromBody] Request entityRequest)
+        public virtual async Task<ActionResult<ApiResponse>> Post([FromBody] IEnumerable<Request> entityRequest)
         {
             try
             {
@@ -56,6 +57,18 @@ namespace NetWebApi.Controllers
                 return GenerateException(ex);
             }
         }
+
+        //[HttpGet("test")]
+        //[ProducesResponseType(200)]
+        //[ProducesResponseType(400)]
+        //[ProducesResponseType(401)]
+        //[ProducesResponseType(404)]
+        //[ProducesResponseType(500)]
+        //public virtual async Task<ActionResult<ApiResponse>> Test(string name, string age, string addressNumber)
+        //{
+        //    ServiceResult result = new ServiceResult();
+        //    return GenerateResult(result);
+        //}
 
         protected ApiResponse GenerateResult(ServiceResult serviceResult)
         {
