@@ -55,6 +55,7 @@ namespace NetWebApi.Services
                 
             }
 
+
             IEnumerable<Entity> entity = _mapper.Map<IEnumerable<Entity>>(entityRequest);
 
             try
