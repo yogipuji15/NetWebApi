@@ -74,5 +74,10 @@ namespace NetWebApi.Repositories
 
             //return null;
         }
+
+        static bool Test2()
+        {
+            return false;
+        }
     }
 }
